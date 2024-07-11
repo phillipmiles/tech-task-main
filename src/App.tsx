@@ -1,10 +1,10 @@
-import React from "react";
-import { Box, Button, Typography } from "@mui/material";
-import { EmployeeTable } from "./components/EmpoyeeTable/EmployeeTable";
-import { EmployeeLineItem } from "./interfaces/employees";
-import { useEmployee } from "./hooks/useEmployee";
-import EmployeeModal from "./components/EmployeeModal/EmployeeModal";
-import { writeEmployeesToExcel } from "./utils/excel";
+import React from 'react';
+import { Box, Button, Typography } from '@mui/material';
+import { EmployeeTable } from './components/EmpoyeeTable/EmployeeTable';
+import { EmployeeLineItem } from './interfaces/employees';
+import { useEmployee } from './hooks/useEmployee';
+import EmployeeModal from './components/EmployeeModal/EmployeeModal';
+import { writeEmployeesToExcel } from './utils/excel';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -17,9 +17,9 @@ function App() {
     <Box sx={{ padding: 2 }}>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}
       >
         <Typography variant="h5">Social Pro Tech Task</Typography>
@@ -30,9 +30,8 @@ function App() {
             onClick={async () => {
               if (employees.length) {
                 await writeEmployeesToExcel(employees);
-                await writeEmployeesToExcel(employees);
               } else {
-                alert("No employees to export");
+                alert('No employees to export');
               }
             }}
           >
