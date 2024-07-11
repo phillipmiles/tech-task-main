@@ -1,7 +1,7 @@
-import { useFormik } from "formik";
-import * as yup from "yup";
-import { Grid, TextField, Button } from "@mui/material";
-import { EmployeeLineItem } from "../../interfaces/employees";
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { Grid, TextField, Button } from '@mui/material';
+import { EmployeeLineItem } from '../../interfaces/employees';
 
 interface EmployeeFormProps {
   loading: boolean;
@@ -35,6 +35,7 @@ export const EmployeeForm = ({
         name: values.name,
         email: values.email,
         phone: values.phone,
+        occupation: values.occupation,
       });
     },
   });
@@ -53,13 +54,13 @@ export const EmployeeForm = ({
             onBlur={formik.handleBlur}
             value={formik.values.name}
             error={formik.touched.name && Boolean(formik.errors.name)}
-            helperText={formik.touched.name ? formik.errors.name : ""}
+            helperText={formik.touched.name ? formik.errors.name : ''}
           />
         </Grid>
         <Grid item xs={6} sm={6}>
           <TextField
-            id="emailAddress"
-            name="emailAddress"
+            id="email"
+            name="email"
             label="email"
             fullWidth
             disabled={loading}
@@ -67,7 +68,7 @@ export const EmployeeForm = ({
             onBlur={formik.handleBlur}
             value={formik.values.email}
             error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email ? formik.errors.email : ""}
+            helperText={formik.touched.email ? formik.errors.email : ''}
           />
         </Grid>
         <Grid item xs={6} sm={6}>
@@ -81,7 +82,7 @@ export const EmployeeForm = ({
             onBlur={formik.handleBlur}
             value={formik.values.phone}
             error={formik.touched.phone && Boolean(formik.errors.phone)}
-            helperText={formik.touched.phone ? formik.errors.phone : ""}
+            helperText={formik.touched.phone ? formik.errors.phone : ''}
           />
         </Grid>
         <Grid item xs={6} sm={6}>
@@ -98,7 +99,7 @@ export const EmployeeForm = ({
               formik.touched.occupation && Boolean(formik.errors.occupation)
             }
             helperText={
-              formik.touched.occupation ? formik.errors.occupation : ""
+              formik.touched.occupation ? formik.errors.occupation : ''
             }
           />
         </Grid>
@@ -108,8 +109,8 @@ export const EmployeeForm = ({
           xs={12}
           sm={12}
           sx={{
-            display: "flex !important",
-            justifyContent: "right !important;",
+            display: 'flex !important',
+            justifyContent: 'right !important;',
           }}
         >
           <Button type="submit" disabled={formik.isSubmitting || loading}>
