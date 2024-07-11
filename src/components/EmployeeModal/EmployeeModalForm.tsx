@@ -16,8 +16,8 @@ export const EmployeeForm = ({
 }: EmployeeFormProps) => {
   const validationSchema = yup.object({
     name: yup.string().required(),
-    email: yup.string().required(),
-    phone: yup.date().required(),
+    email: yup.string().email().required(),
+    phone: yup.number().required(),
     occupation: yup.string().required(),
   });
   const formik = useFormik({
