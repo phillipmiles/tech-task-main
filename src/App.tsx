@@ -4,14 +4,21 @@ import { EmployeeTable } from './components/EmpoyeeTable/EmployeeTable';
 import { EmployeeLineItem } from './interfaces/employees';
 import { useEmployee } from './hooks/useEmployee';
 import EmployeeModal from './components/EmployeeModal/EmployeeModal';
+import EmployeeDeleteModal from './components/EmployeeDeleteModal/EmployeeDeleteModal';
 import { writeEmployeesToExcel } from './utils/excel';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
   const [selectedEmployee, setSelectedEmployee] =
     React.useState<EmployeeLineItem>();
-  const { employees, createEmployee, updateEmployee, isLoading } =
-    useEmployee();
+  const {
+    employees,
+    createEmployee,
+    updateEmployee,
+    deleteEmployee,
+    isLoading,
+  } = useEmployee();
 
   return (
     <Box sx={{ padding: 2 }}>
@@ -51,6 +58,10 @@ function App() {
       <EmployeeTable
         loading={isLoading}
         employees={employees}
+        handleDeleteEmployee={(employee: EmployeeLineItem): void => {
+          setIsDeleteModalOpen(true);
+          setSelectedEmployee(employee);
+        }}
         handleEditEmployee={(employee: EmployeeLineItem): void => {
           setIsModalOpen(true);
           setSelectedEmployee(employee);
@@ -68,6 +79,18 @@ function App() {
           }}
         />
       ) : undefined}
+
+      {isDeleteModalOpen && selectedEmployee && (
+        <EmployeeDeleteModal
+          loading={isLoading}
+          existingEmployee={selectedEmployee}
+          deleteEmployee={deleteEmployee}
+          handleClose={(): void => {
+            setIsDeleteModalOpen(false);
+            setSelectedEmployee(undefined);
+          }}
+        />
+      )}
     </Box>
   );
 }

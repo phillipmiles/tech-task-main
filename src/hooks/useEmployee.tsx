@@ -48,6 +48,19 @@ export const useEmployee = () => {
     }
   };
 
+  const deleteEmployee = async (employee: EmployeeLineItem): Promise<void> => {
+    try {
+      setIsLoading(true);
+      await sleep(2000);
+      const newEmployees = employees.filter((item) => item.id !== employee.id);
+      setEmployees(newEmployees);
+    } catch (e: any) {
+      setError('Could not delete employee');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   React.useEffect(() => {
     listEmployees();
   }, []);
@@ -56,6 +69,7 @@ export const useEmployee = () => {
     employees,
     createEmployee,
     updateEmployee,
+    deleteEmployee,
     isLoading,
     error,
   };

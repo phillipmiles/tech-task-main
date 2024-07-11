@@ -16,12 +16,14 @@ interface EmployeeTableProps {
   loading: boolean;
   employees: EmployeeLineItem[];
   handleEditEmployee: (employee: EmployeeLineItem) => void;
+  handleDeleteEmployee: (employee: EmployeeLineItem) => void;
 }
 
 export const EmployeeTable = ({
   loading,
   employees,
   handleEditEmployee,
+  handleDeleteEmployee,
 }: EmployeeTableProps) => {
   return (
     <Grid item xs={12} md={12}>
@@ -55,6 +57,7 @@ export const EmployeeTable = ({
                   <EmployeeTableRow
                     employee={row}
                     handleEditEmployee={handleEditEmployee}
+                    handleDeleteEmployee={handleDeleteEmployee}
                   />
                 );
               })}
