@@ -6,11 +6,11 @@ import {
   TableHead,
   TableCell,
   Typography,
-} from "@mui/material";
-import { EmployeeTableRow } from "./EmployeeTableRow";
-import { EmployeeTableRowSkeleton } from "./EmployeeTableRowSkeleton";
-import { NoRows } from "./NoRows";
-import { EmployeeLineItem } from "../../interfaces/employees";
+} from '@mui/material';
+import { EmployeeTableRow } from './EmployeeTableRow';
+import { EmployeeTableRowSkeleton } from './EmployeeTableRowSkeleton';
+import { NoRows } from './NoRows';
+import { EmployeeLineItem } from '../../interfaces/employees';
 
 interface EmployeeTableProps {
   loading: boolean;
@@ -48,7 +48,7 @@ export const EmployeeTable = ({
         <TableBody>
           {loading
             ? Array.from({ length: 10 }, (_, index) => (
-                <EmployeeTableRowSkeleton />
+                <EmployeeTableRowSkeleton key={index} />
               ))
             : employees?.map((row) => {
                 return (
@@ -60,7 +60,7 @@ export const EmployeeTable = ({
               })}
 
           {!loading && !employees.length ? (
-            <NoRows title={"Employees"} />
+            <NoRows title={'Employees'} />
           ) : null}
         </TableBody>
       </Table>
