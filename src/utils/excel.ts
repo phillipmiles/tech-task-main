@@ -1,5 +1,5 @@
-import { EmployeeLineItem } from "../interfaces/employees";
-import * as ExcelJs from "exceljs";
+import { EmployeeLineItem } from '../interfaces/employees';
+import * as ExcelJs from 'exceljs';
 
 export const writeEmployeesToExcel = async (
   employees: EmployeeLineItem[]
@@ -8,14 +8,14 @@ export const writeEmployeesToExcel = async (
     (async () => {
       try {
         const workbook = new ExcelJs.Workbook();
-        const workSheet = workbook.addWorksheet("Employees");
-        workSheet.columns = ["id", "name", "phone", "occuplaystation"];
-        workSheet.addRow(["id", "name", "phone", "occuplaystation"]);
+        const workSheet = workbook.addWorksheet('Employees');
+        workSheet.columns = ['id', 'name', 'email', 'phone', 'occupation'];
+        workSheet.addRow(['id', 'name', 'email', 'phone', 'occupation']);
         for (const employee of employees) {
           workSheet.addRow([
             employee.id,
             employee.name,
-            employee.phone,
+            employee.email,
             employee.phone,
             employee.occupation,
           ]);
@@ -23,10 +23,10 @@ export const writeEmployeesToExcel = async (
 
         const data = await workbook.xlsx.writeBuffer();
         const blob = new Blob([data], {
-          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         });
         const url = window.URL.createObjectURL(blob);
-        const anchor = document.createElement("a");
+        const anchor = document.createElement('a');
         anchor.href = url;
         anchor.download = `EmployeeExport.xlsx`;
         anchor.click();
