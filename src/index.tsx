@@ -1,13 +1,23 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { Global } from '@emotion/react';
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <Global
+      styles={{
+        body: {
+          background: '#ebeef1',
+          margin: 0,
+          padding: 0,
+        },
+      }}
+    />
     <App />
   </React.StrictMode>
 );

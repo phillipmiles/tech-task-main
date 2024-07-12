@@ -21,19 +21,32 @@ function App() {
   } = useEmployee();
 
   return (
-    <Box sx={{ padding: 2 }}>
+    <Box sx={{ maxWidth: '1400px', margin: 'auto' }}>
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          py: 2,
+          px: 3,
         }}
       >
-        <Typography variant="h5">Social Pro Tech Task</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <img src="./logo_alt.png" alt={'Social Pro'} width="200px" />
+          <Typography variant="h5" sx={{ ml: 3 }}>
+            Tech Task
+          </Typography>
+        </Box>
         <Box>
           <Button
             color="primary"
-            sx={{ marginRight: 1 }}
+            sx={{ marginRight: 2 }}
             onClick={async () => {
               if (employees.length) {
                 await writeEmployeesToExcel(employees);
@@ -46,12 +59,14 @@ function App() {
           </Button>
           <Button
             color="primary"
+            variant="contained"
+            disableElevation
             onClick={() => {
               setSelectedEmployee(undefined);
               setIsModalOpen(true);
             }}
           >
-            Add
+            Add employee
           </Button>
         </Box>
       </Box>
