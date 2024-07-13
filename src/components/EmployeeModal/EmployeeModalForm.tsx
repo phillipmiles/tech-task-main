@@ -64,7 +64,7 @@ export const EmployeeForm = ({
           <TextField
             id="email"
             name="email"
-            label="email"
+            label="Email"
             fullWidth
             disabled={loading}
             onChange={formik.handleChange}
@@ -78,7 +78,7 @@ export const EmployeeForm = ({
           <TextField
             id="phone"
             name="phone"
-            label="phone"
+            label="Phone"
             fullWidth
             disabled={loading}
             onChange={formik.handleChange}
@@ -92,7 +92,7 @@ export const EmployeeForm = ({
           <TextField
             id="occupation"
             name="occupation"
-            label="occupation"
+            label="Occupation"
             fullWidth
             disabled={loading}
             onChange={formik.handleChange}
