@@ -1,9 +1,9 @@
-import { Dialog, DialogContent } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import {
   createDefaultEmployee,
   EmployeeLineItem,
-} from "../../interfaces/employees";
-import { EmployeeForm } from "./EmployeeModalForm";
+} from '../../interfaces/employees';
+import { EmployeeForm } from './EmployeeModalForm';
 
 interface EmployeeModalProps {
   loading: boolean;
@@ -25,6 +25,7 @@ export default function EmployeeModal({
 }: EmployeeModalProps) {
   return (
     <Dialog fullWidth open onClose={handleClose}>
+      <DialogTitle>{existingEmployee ? 'Edit' : 'Add'} employee</DialogTitle>
       <DialogContent>
         <EmployeeForm
           loading={loading}
@@ -37,6 +38,7 @@ export default function EmployeeModal({
             }
             handleClose();
           }}
+          handleCancel={handleClose}
         />
       </DialogContent>
     </Dialog>

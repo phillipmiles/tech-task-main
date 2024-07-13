@@ -2,17 +2,20 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Grid, TextField, Button } from '@mui/material';
 import { EmployeeLineItem } from '../../interfaces/employees';
+import { MouseEventHandler } from 'react';
 
 interface EmployeeFormProps {
   loading: boolean;
   employee: EmployeeLineItem;
   handleSubmit: (employee: EmployeeLineItem) => Promise<void>;
+  handleCancel: MouseEventHandler;
 }
 
 export const EmployeeForm = ({
   loading,
   employee,
   handleSubmit,
+  handleCancel,
 }: EmployeeFormProps) => {
   const validationSchema = yup.object({
     name: yup.string().required(),
@@ -42,8 +45,8 @@ export const EmployeeForm = ({
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Grid container spacing={3}>
-        <Grid item xs={6} sm={6}>
+      <Grid container spacing={3} pt={2}>
+        <Grid item xs={12} sm={6}>
           <TextField
             id="name"
             name="name"
@@ -57,7 +60,7 @@ export const EmployeeForm = ({
             helperText={formik.touched.name ? formik.errors.name : ''}
           />
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={12} sm={6}>
           <TextField
             id="email"
             name="email"
@@ -71,7 +74,7 @@ export const EmployeeForm = ({
             helperText={formik.touched.email ? formik.errors.email : ''}
           />
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={12} sm={6}>
           <TextField
             id="phone"
             name="phone"
@@ -85,7 +88,7 @@ export const EmployeeForm = ({
             helperText={formik.touched.phone ? formik.errors.phone : ''}
           />
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={12} sm={6}>
           <TextField
             id="occupation"
             name="occupation"
@@ -103,7 +106,7 @@ export const EmployeeForm = ({
             }
           />
         </Grid>
-        <Grid item xs={6} sm={6} />
+        <Grid item xs={12} sm={6} />
         <Grid
           item
           xs={12}
@@ -115,6 +118,13 @@ export const EmployeeForm = ({
         >
           <Button type="submit" disabled={formik.isSubmitting || loading}>
             Save
+          </Button>
+          <Button
+            onClick={handleCancel}
+            type="button"
+            disabled={formik.isSubmitting || loading}
+          >
+            Cancel
           </Button>
         </Grid>
       </Grid>
