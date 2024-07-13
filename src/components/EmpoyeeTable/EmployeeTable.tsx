@@ -100,6 +100,7 @@ export const EmployeeTable = ({
             : sortedEmployees?.map((row) => {
                 return (
                   <EmployeeTableRow
+                    key={row.id}
                     employee={row}
                     handleEditEmployee={handleEditEmployee}
                     handleDeleteEmployee={handleDeleteEmployee}
