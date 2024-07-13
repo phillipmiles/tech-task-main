@@ -116,7 +116,11 @@ export const EmployeeForm = ({
             justifyContent: 'right !important;',
           }}
         >
-          <Button type="submit" disabled={formik.isSubmitting || loading}>
+          <Button
+            type="submit"
+            disabled={formik.isSubmitting || loading}
+            sx={{ mr: 1 }}
+          >
             Save
           </Button>
           <Button

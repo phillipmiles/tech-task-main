@@ -1,12 +1,10 @@
 import {
-  Grid,
   Table,
   TableBody,
   TableRow,
   TableHead,
   TableCell,
   TableContainer,
-  Paper,
   TableSortLabel,
 } from '@mui/material';
 import { EmployeeTableRow } from './EmployeeTableRow';
@@ -70,52 +68,50 @@ export const EmployeeTable = ({
   });
 
   return (
-    <Grid item xs={12} md={12} sx={{ p: 3 }}>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              {tableColumns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  sortDirection={orderBy === column.id ? order : false}
-                >
-                  {column.sortable ? (
-                    <TableSortLabel
-                      active={orderBy === column.id}
-                      direction={orderBy === column.id ? order : 'asc'}
-                      onClick={() => handleSort(column.id)}
-                    >
-                      {column.label}
-                    </TableSortLabel>
-                  ) : (
-                    column.label
-                  )}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {loading
-              ? Array.from({ length: 10 }, (_, index) => (
-                  <EmployeeTableRowSkeleton key={index} />
-                ))
-              : sortedEmployees?.map((row) => {
-                  return (
-                    <EmployeeTableRow
-                      employee={row}
-                      handleEditEmployee={handleEditEmployee}
-                      handleDeleteEmployee={handleDeleteEmployee}
-                    />
-                  );
-                })}
+    <TableContainer>
+      <Table>
+        <TableHead>
+          <TableRow>
+            {tableColumns.map((column) => (
+              <TableCell
+                key={column.id}
+                sortDirection={orderBy === column.id ? order : false}
+              >
+                {column.sortable ? (
+                  <TableSortLabel
+                    active={orderBy === column.id}
+                    direction={orderBy === column.id ? order : 'asc'}
+                    onClick={() => handleSort(column.id)}
+                  >
+                    {column.label}
+                  </TableSortLabel>
+                ) : (
+                  column.label
+                )}
+              </TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {loading
+            ? Array.from({ length: 10 }, (_, index) => (
+                <EmployeeTableRowSkeleton key={index} />
+              ))
+            : sortedEmployees?.map((row) => {
+                return (
+                  <EmployeeTableRow
+                    employee={row}
+                    handleEditEmployee={handleEditEmployee}
+                    handleDeleteEmployee={handleDeleteEmployee}
+                  />
+                );
+              })}
 
-            {!loading && !employees.length ? (
-              <NoRows title={'Employees'} />
-            ) : null}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Grid>
+          {!loading && !employees.length ? (
+            <NoRows title={'Employees'} />
+          ) : null}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
